@@ -18,7 +18,15 @@ namespace Business.Concrete
 
         public void Add(Car car)
         {
-            _carDal.Add(car);
+            if(car.Description.Length<2 || car.DailyPrice <= 0)
+            {
+                throw new DuplicateWaitObjectException("Araba Açıklaması 2 den küçük olamaz veya günlük fiyatı 0 dan küçük olamaz");
+            }
+            else
+            {
+                _carDal.Add(car);
+            }
+            
         }
 
         public void Delete(Car car)
