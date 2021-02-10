@@ -1,4 +1,5 @@
-﻿using DataAccess.Abstract;
+﻿using Core.DataAcces.EntityFrameWork;
+using DataAccess.Abstract;
 using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -9,54 +10,8 @@ using System.Text;
 
 namespace DataAccess.Concrete.EntityFrameWork
 {
-    public class EfCarDal : ICarDal
+    public class EfCarDal :EfEntityRepositoryBase<Car,NewDatabaseContext>,ICarDal
     {
-        public void Add(Car entity)
-        {
-            using (NewDatabaseContext context = new NewDatabaseContext())
-            {
-                var addedEntity = context.Entry(entity);
-                addedEntity.State = EntityState.Added;
-                context.SaveChanges();
-            }
-
-        }
-
-        public void Delete(Car entity)
-        {
-            using (NewDatabaseContext context = new NewDatabaseContext())
-            {
-                var deletedEntity = context.Entry(entity);
-                deletedEntity.State = EntityState.Deleted;
-                context.SaveChanges();
-            }
-        }
-
-        public List<Car> GetAll(Expression<Func<Car, bool>> filter = null)
-        {
-            using (NewDatabaseContext context = new NewDatabaseContext())
-            {
-                return filter == null ?
-                    context.Set<Car>().ToList()
-                    :
-                    context.Set<Car>().Where(filter).ToList();
-            }
-
-        }
-
-        public Car GetById(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(Car entity)
-        {
-            using (NewDatabaseContext context = new NewDatabaseContext())
-            {
-                var updatedEntity = context.Entry(entity);
-                updatedEntity.State = EntityState.Modified;
-                context.SaveChanges();
-            }
-        }
+        
     }
 }
