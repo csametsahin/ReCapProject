@@ -10,6 +10,36 @@ namespace ConsoleUI2
     {
         static void Main(string[] args)
         {
+            //GetAllTest();
+            //BrandAddTest();
+            //ColorAddTest();
+            
+
+
+        }
+
+        private static void ColorAddTest()
+        {
+            ColorManager colorManager = new ColorManager(new EfColorDal());
+            colorManager.Add(new Color { ColorName = "Kırmızı" });
+            foreach (var item in colorManager.GetAll())
+            {
+                Console.WriteLine(item.ColorName);
+            }
+        }
+
+        private static void BrandAddTest()
+        {
+            BrandManager brandManager = new BrandManager(new EfBrandDal());
+            brandManager.Add(new Brand { BrandName = "Tesla" });
+            foreach (var item in brandManager.GetAll())
+            {
+                Console.WriteLine(item.BrandName);
+            }
+        }
+
+        private static void GetAllTest()
+        {
             CarManager carManager = new CarManager(new EfCarDal());
             carManager.Add(new Car { ColorId = 2, BrandId = 2, DailyPrice = 550, ModelYear = 2010, Description = "Bmw 320" });
             carManager.Add(new Car { ColorId = 1, BrandId = 1, DailyPrice = 450, ModelYear = 2015, Description = "Nice Car" });
@@ -22,5 +52,7 @@ namespace ConsoleUI2
                 Console.WriteLine(item.Description);
             }
         }
+
+
     }
 }
