@@ -13,9 +13,17 @@ namespace ConsoleUI2
             //GetAllTest();
             //BrandAddTest();
             //ColorAddTest();
-            
+            //GetCarDetailTest();
 
+        }
 
+        private static void GetCarDetailTest()
+        {
+            CarManager carManager = new CarManager(new EfCarDal());
+            foreach (var item in carManager.GetCarDetails())
+            {
+                Console.WriteLine(item.BrandName + " " + item.ColorName + " " + item.Description);
+            }
         }
 
         private static void ColorAddTest()
