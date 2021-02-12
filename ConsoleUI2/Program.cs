@@ -20,7 +20,7 @@ namespace ConsoleUI2
         private static void GetCarDetailTest()
         {
             CarManager carManager = new CarManager(new EfCarDal());
-            foreach (var item in carManager.GetCarDetails())
+            foreach (var item in carManager.GetCarDetails().Data)
             {
                 Console.WriteLine(item.BrandName + " " + item.ColorName + " " + item.Description);
             }
@@ -30,7 +30,7 @@ namespace ConsoleUI2
         {
             ColorManager colorManager = new ColorManager(new EfColorDal());
             colorManager.Add(new Color { ColorName = "Kırmızı" });
-            foreach (var item in colorManager.GetAll())
+            foreach (var item in colorManager.GetAll().Data)
             {
                 Console.WriteLine(item.ColorName);
             }
@@ -40,7 +40,7 @@ namespace ConsoleUI2
         {
             BrandManager brandManager = new BrandManager(new EfBrandDal());
             brandManager.Add(new Brand { BrandName = "Tesla" });
-            foreach (var item in brandManager.GetAll())
+            foreach (var item in brandManager.GetAll().Data)
             {
                 Console.WriteLine(item.BrandName);
             }
@@ -55,7 +55,7 @@ namespace ConsoleUI2
             carManager.Add(new Car { ColorId = 4, BrandId = 1, DailyPrice = 210, ModelYear = 2018, Description = "Worst Car" });
             carManager.Add(new Car { ColorId = 1, BrandId = 3, DailyPrice = 150, ModelYear = 2019, Description = "Expensive Car" });
 
-            foreach (var item in carManager.GetAll())
+            foreach (var item in carManager.GetAll().Data)
             {
                 Console.WriteLine(item.Description);
             }
