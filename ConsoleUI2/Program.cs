@@ -13,8 +13,18 @@ namespace ConsoleUI2
             //GetAllTest();
             //BrandAddTest();
             //ColorAddTest();
-            //GetCarDetailTest();
+            //   GetCarDetailTest();
+           // UserGetAllTest();
 
+        }
+
+        private static void UserGetAllTest()
+        {
+            UserManager userManager = new UserManager(new EfUserDal());
+            foreach (var item in userManager.GetAll().Data)
+            {
+                Console.WriteLine(item.FirstName);
+            }
         }
 
         private static void GetCarDetailTest()
